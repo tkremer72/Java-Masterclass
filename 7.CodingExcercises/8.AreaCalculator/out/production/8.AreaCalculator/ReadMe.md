@@ -3,7 +3,7 @@ Write a method named area with one double parameter named radius.
 
 The method needs to return a double value that represents the area of a circle.
 
-If the parameter radius is negative the return -1.0 to represent and invalid value
+If the parameter radius is negative the return -1_0 to represent and invalid value
 
 Write another overloaded method with 2 parameters x and y(both doubles) where x and y 
 represent the sides of a rectangle.
