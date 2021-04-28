@@ -24,12 +24,18 @@ public class Account {
             String customerPhoneNumber
     ) {
         System.out.println("Account constructor with parameters called!");
+        //setNumber(number);//While you can do it this way, it is best to set the fields directly
         this.number = number;
         this.balance = balance;
         this.customerName = customerName;
         this.customerEmailAddress = customerEmailAddress;
         this.customerPhoneNumber = customerPhoneNumber;
     }
+
+    public Account(String customerName, String customerEmailAddress, String customerPhoneNumber) {
+        this("99999",100.55, customerName, customerEmailAddress, customerPhoneNumber);
+    }
+
     public void deposit(double depositAmount) {//Method to make a deposit
         this.balance += depositAmount;
         System.out.println("Deposit of $" + depositAmount + " made.  New balance is $" + this.balance);

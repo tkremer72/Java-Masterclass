@@ -38,5 +38,29 @@ public class Main {
 
         defaultAccount.deposit(51.0);
         defaultAccount.withdrawal(100.0);
+
+        System.out.println("*********************************");
+
+        Account timsAccount = new Account("Tim", "tim@email.com", "12345");
+        System.out.println(timsAccount.getNumber() + " name " + timsAccount.getCustomerName());
+
+        System.out.println("********************************");
+
+        VipPerson person1 = new VipPerson();
+        System.out.println(person1.getName());
+
+        System.out.println("*********************************");
+
+        VipPerson person2 = new VipPerson("Bob", 25000);
+        System.out.println(person2.getName());
+
+        System.out.println("*********************************");
+
+        VipPerson person3 = new VipPerson("James", 100.0, "james@james.com");
+        System.out.println(person3.getName());
+        System.out.println(person3.getEmailAddress());
+        System.out.println("*********************************");
+
+
     }
 }
