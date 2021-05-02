@@ -7,3 +7,15 @@ computer has a motherboard, and a computer has a processor, and while a computer
 these things, these things are not a computer.
 To determine if you should use inheritance or if you should use composition, think about 
 what you will need access to or need to access.
+
+Challenge
+Create a single room of a house using composition
+Think about the things that should be included in the room
+Maybe physical parts of the house but furniture as well
+Add at least one method to access an object via a getter and then
+that objects public method as you saw in the previous lesson then
+add at least one method to hide the object e.g. not using a getter
+but to access the object used in composition within the main class
+like you saw in this lesson.
+
+
