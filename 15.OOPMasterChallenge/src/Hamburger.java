@@ -53,7 +53,7 @@ public class Hamburger {
         }
         if(this.addOn2Name != null) {
             hamburgerPrice += this.addOn2Price;
-            System.out.println("Added " + this.addOn2Price + " for an extra " + this.addOn2Price);
+            System.out.println("Added " + this.addOn2Name + " for an extra " + this.addOn2Price);
         }
         if(this.addOn3Name != null) {
             hamburgerPrice += this.addOn3Price;
