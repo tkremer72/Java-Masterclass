@@ -80,7 +80,7 @@ public class MobilePhone {
     //find a contact position number based on the name
     public Contact queryContact(String name) {
         int position = findContact(name);
-        if(position >- 0) {
+        if(position >= 0) {
             return this.myContacts.get(position);
         }
         return null;
