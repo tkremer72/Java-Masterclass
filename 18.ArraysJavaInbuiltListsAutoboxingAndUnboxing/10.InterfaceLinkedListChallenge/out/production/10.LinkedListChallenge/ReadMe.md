@@ -37,5 +37,3 @@ private Song findSong(String title) {
 }
 return null;
 }
-
-Changed this project to use List instead of LinkedList.

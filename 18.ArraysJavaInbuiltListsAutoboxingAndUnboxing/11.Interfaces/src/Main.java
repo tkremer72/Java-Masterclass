@@ -8,7 +8,7 @@ public class Main {
         timsPhone.answer();
 
         timsPhone = new MobilePhone(7427418);
-        //timsPhone.powerOn();
+        timsPhone.powerOn();
         timsPhone.callPhone(7427418);
     }
 }

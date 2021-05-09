@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Main {
-//Went through and changed LinkedList to List
-    private static List<Album> albums = new ArrayList<Album>();
+
+    private static ArrayList<Album> albums = new ArrayList<Album>();
 
     public static void main(String[] args) {
         Album album = new Album("Stormbringer", "Deep Purple");
@@ -31,7 +31,7 @@ public class Main {
 
         albums.add(album);
 
-        List<Song> playList = new Vector<Song>();
+        LinkedList<Song> playList = new LinkedList<Song>();
         albums.get(0).addToPlayList("You can't do it right", playList);
         albums.get(0).addToPlayList("Holy man", playList);
         albums.get(0).addToPlayList("Speed king", playList);//Does not exist
@@ -45,7 +45,7 @@ public class Main {
         play(playList);
 
     }
-    private static void play(List<Song> playList) {
+    private static void play(LinkedList<Song> playList) {
         Scanner scanner = new Scanner(System.in);
         boolean quit = false;
         boolean forward = true;
@@ -146,7 +146,7 @@ public class Main {
     }
 
     //Create a method to display the list of songs for an album
-    private static void printList(List<Song> playList) {
+    private static void printList(LinkedList<Song> playList) {
         Iterator<Song> iterator = playList.iterator();
         System.out.println("==========================================");
         while(iterator.hasNext()) {

@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-//Went through and changed the addToPlayList method to use List instead of LinkedList
+
 public class Album {
     //Create two fields for the album class and one ArrayList
     private String albumName;
@@ -37,7 +36,7 @@ public class Album {
     }
 
     //Create a playlist and add songs to that playlist
-    public boolean addToPlayList(int trackNumber, List<Song> playList) {
+    public boolean addToPlayList(int trackNumber, LinkedList<Song> playList) {
         int index = trackNumber -1;//For this method tracknumber represents the position in the list
         if((index >= 0) && (index <= this.songs.size())) {//make sure there is a song with that track number
             playList.add(this.songs.get(index));//if song exists, Add the song to the playlist
@@ -48,7 +47,7 @@ public class Album {
     }
 
     //Create an overloaded addToPlaylist method that uses the title to indicate the position in the list
-    public boolean addToPlayList(String title, List<Song> playList) {
+    public boolean addToPlayList(String title, LinkedList<Song> playList) {
         Song checkedSong = findSong(title);
         if(checkedSong != null) {
             playList.add(checkedSong);

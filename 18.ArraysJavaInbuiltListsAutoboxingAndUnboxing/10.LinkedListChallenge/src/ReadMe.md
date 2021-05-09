@@ -37,3 +37,6 @@ private Song findSong(String title) {
 }
 return null;
 }
+
+Changed this project to use List instead of LinkedList.  Can also use Vector<>() 
+instead of ArrayList or LinkedList.
