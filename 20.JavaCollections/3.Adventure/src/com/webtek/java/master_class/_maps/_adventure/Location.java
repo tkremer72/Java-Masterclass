@@ -15,6 +15,7 @@ public class Location {
         this.locationID = locationID;
         this.description = description;
         this.exits = new HashMap<>();
+        this.exits.put("Q", 0);
     }
 
     //Create the ability to add an exit
