@@ -1,0 +1,7 @@
+Mail birthday card.	Buy a birthday card for someone.	18-06-2021
+Get Mail.	Go to the mailbox and get the local mail.	19-06-2021
+Purchase Grocery.	Go online and buy groceries for supper.	19-06-2021
+Take Shot.	Perform Stelara injection every two months on the 24th.	24-06-2021
+Walk Dogs.	Take the dogs to the dog park for a daily walk.	23-03-2021
+Cook Supper.	Prepare chicken and gravy with rice and corn for supper tonight!	18-05-2021
+Do Stuff.	I need to do some stuff on tomorrow.	19-05-2021
