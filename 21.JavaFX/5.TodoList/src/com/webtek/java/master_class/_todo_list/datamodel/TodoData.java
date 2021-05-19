@@ -80,8 +80,12 @@ public class TodoData {
                 bw.close();
             }
         }
+
     }
 
+    public void deleteTodoItem(TodoItem item) {
+        todoItems.remove(item);
+    }
 
 
 }
