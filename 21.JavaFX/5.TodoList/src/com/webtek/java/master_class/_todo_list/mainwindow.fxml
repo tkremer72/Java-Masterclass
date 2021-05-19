@@ -25,7 +25,7 @@
                     <SeparatorMenuItem/>
                   <!--  <MenuItem text="Edit Todo" onAction="#showEditItemDialog"/>
                     <SeparatorMenuItem/> -->
-                    <MenuItem text="Exit App"/>
+                    <MenuItem text="Exit App" onAction="#handleExit"/>
                 </Menu>
             </MenuBar>
             <ToolBar>
@@ -50,7 +50,7 @@
                                             </ImageView>
                                         </graphic>
                                         </Button>-->
-                    <ToggleButton fx:id="filterToggleButton" onAction="#filterHandleFilterButton" text="Today's Todos'">
+                    <ToggleButton fx:id="filterToggleButton" onAction="#handleFilterButton" text="Today's Todos'">
                         <tooltip>
                             <Tooltip text="Button Down: Show Today's Todos' Only. Button Up: Show All Items"/>
                         </tooltip>

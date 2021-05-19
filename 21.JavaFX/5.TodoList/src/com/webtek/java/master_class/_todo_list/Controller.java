@@ -2,8 +2,10 @@ package com.webtek.java.master_class._todo_list;
 
 import com.webtek.java.master_class._todo_list.datamodel.TodoData;
 import com.webtek.java.master_class._todo_list.datamodel.TodoItem;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,12 +22,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Controller {
 
-    private List<TodoItem> todoItems;
+    //private List<TodoItem> todoItems;
     @FXML
     private ListView<TodoItem> todoListView;
     @FXML
@@ -39,10 +41,19 @@ public class Controller {
     @FXML
     private ToggleButton filterToggleButton;
 
+    private FilteredList<TodoItem> filteredList;
+
+    private Predicate<TodoItem> wantAllItems;
+
+    private Predicate<TodoItem> wantTodaysItems;
+
+
+
+
     public void initialize() {
         listContextMenu = new ContextMenu();
-        MenuItem deleteMenutItem = new MenuItem("Delete");
-        deleteMenutItem.setOnAction(new EventHandler<ActionEvent>() {
+        MenuItem deleteMenuItem = new MenuItem("Delete");
+        deleteMenuItem.setOnAction(new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
                 TodoItem item = todoListView.getSelectionModel().getSelectedItem();
@@ -50,7 +61,7 @@ public class Controller {
             }
         });
 
-        listContextMenu.getItems().addAll(deleteMenutItem);
+        listContextMenu.getItems().addAll(deleteMenuItem);
         todoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<>() {
             @Override
             public void changed(ObservableValue<? extends TodoItem> observable, TodoItem oldValue, TodoItem newValue) {
@@ -62,11 +73,31 @@ public class Controller {
                 }
             }
         });
-        SortedList<TodoItem> sortedList = new SortedList<TodoItem>(TodoData.getInstance().getTodoItems(),
-                new Comparator<TodoItem>() {
+
+        //Show all todos
+        wantAllItems = new Predicate<>() {
+            @Override
+            public boolean test(TodoItem todoItem) {
+                return true;
+            }
+        };
+
+        //show today's todos
+        wantTodaysItems = new Predicate<>() {
+            @Override
+            public boolean test(TodoItem todoItem) {
+                return (todoItem.getDeadline().equals(LocalDate.now()));
+            }
+        };
+
+        filteredList = new FilteredList<>(TodoData.getInstance().getTodoItems(), wantAllItems);
+
+        SortedList<TodoItem> sortedList = new SortedList<>(filteredList,
+                new Comparator<>() {
                     @Override
                     public int compare(TodoItem o1, TodoItem o2) {
-                        return o1.getDeadline().compareTo(o2.getDeadline());                   }
+                        return o1.getDeadline().compareTo(o2.getDeadline());
+                    }
                 });
 
         //todoListView.setItems(TodoData.getInstance().getTodoItems());
@@ -93,6 +124,7 @@ public class Controller {
                         }
                     }
                 };
+
                 cell.emptyProperty().addListener(
                         (obs, wasEmpty, isNowEmpty) -> {
                             if (isNowEmpty) {
@@ -126,16 +158,14 @@ public class Controller {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
         Optional<ButtonType> result = dialog.showAndWait();
+
         if (result.isPresent() && result.get() == ButtonType.OK) {
             DialogController controller = fxmlLoader.getController();
             TodoItem newItem = controller.processResults();
             todoListView.getSelectionModel().select(newItem);
         }
     }
-    @FXML
-    public void showEditItemDialog() {
 
-    }
     @FXML
     public void handleKeyPressed(KeyEvent keyEvent){
         TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
@@ -146,13 +176,12 @@ public class Controller {
         }
     }
 
-
-    @FXML
-    public void handleClickListView() {
-        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
-        itemDetailsTextArea.setText(item.getDetails());
-        deadlineLabel.setText(item.getDeadline().toString());
-    }
+//    @FXML
+//    public void handleClickListView() {
+//        TodoItem item = todoListView.getSelectionModel().getSelectedItem();
+//        itemDetailsTextArea.setText(item.getDetails());
+//        deadlineLabel.setText(item.getDeadline().toString());
+//    }
 
     @FXML
     public void deleteItem(TodoItem item) {
@@ -167,11 +196,33 @@ public class Controller {
         }
     }
 
+    @FXML
     public void handleFilterButton() {
+        TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
         if(filterToggleButton.isSelected()) {
-
+            filteredList.setPredicate(wantTodaysItems);
+            filterToggleButton.setText("All Todos");
+            if(filteredList.isEmpty()) {
+                itemDetailsTextArea.clear();
+                deadlineLabel.setText("");
+                filterToggleButton.setText("All Todos");
+            } else if(filteredList.contains(selectedItem)) {
+                todoListView.getSelectionModel().select(selectedItem);
+            } else {
+                todoListView.getSelectionModel().selectFirst();
+                filterToggleButton.setText("All Todos");
+            }
         } else {
+            filteredList.setPredicate(wantAllItems);
+            todoListView.getSelectionModel().select(selectedItem);
+            filterToggleButton.setText("Today's Todos");
 
         }
+    }
+
+    //Exit the application
+    @FXML
+    public void handleExit() {
+        Platform.exit();
     }
 }
