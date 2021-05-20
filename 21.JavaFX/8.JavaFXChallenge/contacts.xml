@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contacts>
+<contact>
+	<first_name>Thomas</first_name>
+	<last_name>Kremer</last_name>
+	<phone_number>(919)78-7412</phone_number>
+	<notes>This is my personal information.  A test to see if this works.</notes>
+</contact>
+<contact>
+	<first_name>Renee</first_name>
+	<last_name>Newman</last_name>
+	<phone_number>(919)637-9600</phone_number>
+	<notes>Not really Renees' phone number.</notes>
+</contact>
+<contact>
+	<first_name>Brian</first_name>
+	<last_name>Ellis</last_name>
+	<phone_number>(919)732-4220</phone_number>
+	<notes>This is not really Brians phone number either.</notes>
+</contact>
+</contacts>

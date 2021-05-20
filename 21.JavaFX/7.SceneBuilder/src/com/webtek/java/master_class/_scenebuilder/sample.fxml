@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.webtek.java.master_class._scenebuilder.Controller">
+
+   <columnConstraints>
+
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+
+   </columnConstraints>
+
+   <rowConstraints>
+
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+
+   </rowConstraints>
+
+   <children>
+      <HBox spacing="5.0" GridPane.rowIndex="1">
+
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleAction" style="-fx-text-fill: white;" text="OK" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" style="-fx-text-fill: white;" text="CANCEL" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" style="-fx-text-fill: white;" text="HELP" textAlignment="CENTER" />
+         </children>
+
+         <GridPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </GridPane.margin>
+      </HBox>
+      <Label fx:id="label" text="My Label" />
+   </children>
+</GridPane>

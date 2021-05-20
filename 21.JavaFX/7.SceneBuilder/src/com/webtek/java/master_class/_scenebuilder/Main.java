@@ -1,4 +1,4 @@
-package sample;
+package com.webtek.java.master_class._scenebuilder;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
