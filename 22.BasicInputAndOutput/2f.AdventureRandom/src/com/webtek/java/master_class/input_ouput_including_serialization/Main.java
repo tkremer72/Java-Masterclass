@@ -1,5 +1,6 @@
 package com.webtek.java.master_class.input_ouput_including_serialization;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class Main {
     private static Locations locations = new Locations();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -24,15 +25,14 @@ public class Main {
         vocabulary.put("EAST", "E");
 
 
-        int location = 1;
-        //int location = 64;
+        Location currentLocation = locations.getLocation(1);
         while(true) {
-            System.out.println(locations.get(location).getDescription());
-            if(location == 0) {
+            System.out.println(currentLocation.getDescription());
+            if(currentLocation.getLocationID() == 0) {
                 break;
             }
 
-            Map<String, Integer> exits = locations.get(location).getExits();//retrieve the map of valid exits
+            Map<String, Integer> exits = currentLocation.getExits();//retrieve the map of valid exits
 
             System.out.print("Available exits are ");
             for(String exit: exits.keySet()) {
@@ -51,11 +51,12 @@ public class Main {
                 }
             }
             if(exits.containsKey(direction)) {
-                location = exits.get(direction);
+                currentLocation = locations.getLocation(currentLocation.getExits().get(direction));
             } else {
                 System.out.println("You cannot go in that direction!");
             }
         }
+        locations.close();
     }
 
 }
