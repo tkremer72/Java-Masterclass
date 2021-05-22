@@ -1,4 +1,4 @@
-package com.webtek.java.master_class.input_output;
+package com.webtek.java.master_class.buffered_writer;
 
 import java.util.HashMap;
 import java.util.Map;

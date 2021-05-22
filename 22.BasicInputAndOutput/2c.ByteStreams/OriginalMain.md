@@ -2,7 +2,7 @@
 
 Original Locations.java code
 
-package com.webtek.java.master_class.buffered_writer;
+package com.webtek.java.master_class.byte_streams;
 
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,23 +1,27 @@
-package com.webtek.java.master_class.input_output;
+package com.webtek.java.master_class.byte_streams;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
 
-    private final static Map<Integer, Location> locations = new HashMap<>();
+    private final static Map<Integer, Location> locations = new LinkedHashMap<>();
 
     public static void main(String[] args) throws IOException {
         //Try with resources
-        try (FileWriter locationsFile = new FileWriter("locations.txt");
-             FileWriter directionsFile = new FileWriter("directions.txt")) {
-            for (Location location : locations.values()) {
-                locationsFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
-                for (String direction : location.getExits().keySet()) {
-                    directionsFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction) + "\n");
+        try(DataOutputStream locationsFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("locations.dat")))) {
+            for(Location location : locations.values()) {
+                locationsFile.writeInt(location.getLocationID());
+                locationsFile.writeUTF(location.getDescription());
+                System.out.println("Writing location " + location.getLocationID() + " : " + location.getDescription());
+                System.out.println("Writing " + (location.getExits().size() - 1) + " exits.");
+                locationsFile.writeInt(location.getExits().size() - 1);
+                for(String direction : location.getExits().keySet()) {
+                    if(!direction.equalsIgnoreCase("Q")) {
+                        System.out.println("\t\t" + direction + "," + location.getExits().get(direction));
+                        locationsFile.writeUTF(direction);
+                        locationsFile.writeInt(location.getExits().get(direction));
+                    }
                 }
             }
         }
@@ -27,7 +31,7 @@ public class Locations implements Map<Integer, Location> {
 
     static {//This block of code gets initialized once
         //Read the locations
-        try(Scanner scanner = new Scanner(new FileReader("locations_big.txt"))) {
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("locations_big.txt")))) {
             scanner.useDelimiter(",");
             while(scanner.hasNextLine()) {
                 int loc = scanner.nextInt();
